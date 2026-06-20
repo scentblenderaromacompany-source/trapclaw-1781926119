@@ -1,0 +1,18 @@
+# Obsidian config (local only)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/hotkeys.json
+.obsidian/themes/
+.obsidian/plugins/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
+*.swp
+*~
+
+# Node modules (if any)
+node_modules/
