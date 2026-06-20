@@ -1,0 +1,522 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/home/bobby/.openclaw/workspace",
+      "models": {
+        "nvidia/nemotron-3-ultra-550b-a55b": {
+          "alias": "NVIDIA"
+        },
+        "nvidia/moonshotai/kimi-k2.6": {},
+        "freeride/openrouter/free": {},
+        "9router/mmf/mimo-auto": {}
+      },
+      "model": {
+        "primary": "9router/mmf/mimo-auto"
+      },
+      "bootstrapMaxChars": 50000,
+      "bootstrapTotalMaxChars": 300000,
+      "contextInjection": "always"
+    },
+    "list": [
+      {
+        "id": "main",
+        "tools": {
+          "alsoAllow": [
+            "browser",
+            "canvas",
+            "message",
+            "heartbeat_respond",
+            "gateway",
+            "nodes",
+            "agents_list",
+            "tts",
+            "diffs",
+            "dir_fetch",
+            "dir_list",
+            "file_fetch",
+            "file_write",
+            "lobster",
+            "voice_call"
+          ]
+        }
+      }
+    ]
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "password",
+      "password": "Bcmoney69$"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "funnel",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "provider": "parallel-free",
+        "enabled": true
+      }
+    },
+    "exec": {
+      "host": "gateway",
+      "security": "full",
+      "ask": "off"
+    }
+  },
+  "plugins": {
+    "slots": {
+      "memory": "memory-lancedb"
+    },
+    "entries": {
+      "nvidia": {
+        "enabled": true
+      },
+      "telegram": {
+        "enabled": true
+      },
+      "whatsapp": {
+        "enabled": true
+      },
+      "matrix": {
+        "enabled": true
+      },
+      "discord": {
+        "enabled": true
+      },
+      "slack": {
+        "enabled": true
+      },
+      "parallel": {
+        "enabled": true
+      },
+      "acpx": {
+        "enabled": true
+      },
+      "diagnostics-prometheus": {
+        "enabled": true
+      },
+      "diffs-language-pack": {
+        "enabled": true
+      },
+      "diffs": {
+        "enabled": true
+      },
+      "diagnostics-otel": {
+        "enabled": true
+      },
+      "llama-cpp": {
+        "enabled": true
+      },
+      "lobster": {
+        "enabled": true
+      },
+      "memory-lancedb": {
+        "enabled": true,
+        "config": {
+          "embedding": {
+            "provider": "openai",
+            "apiKey": "${NVIDIA...KEY}",
+            "baseUrl": "https://integrate.api.nvidia.com/v1",
+            "model": "nvidia/nv-embedqa-e5-v5",
+            "dimensions": 1024
+          },
+          "dbPath": "~/.openclaw/memory/lancedb",
+          "autoRecall": true,
+          "autoCapture": true,
+          "captureMaxChars": 500,
+          "recallMaxChars": 400
+        }
+      },
+      "pixverse": {
+        "enabled": true
+      },
+      "tokenjuice": {
+        "enabled": true
+      },
+      "voice-call": {
+        "enabled": true
+      },
+      "openclaw-mem0": {
+        "enabled": true
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "nvidia": {
+        "baseUrl": "https://integrate.api.nvidia.com/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "nvidia/nemotron-3-ultra-550b-a55b",
+            "name": "NVIDIA Nemotron 3 Ultra 550B",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 16384,
+            "compat": {
+              "requiresStringContent": true
+            },
+            "params": {
+              "chat_template_kwargs": {
+                "enable_thinking": false,
+                "force_nonempty_content": true
+              }
+            }
+          },
+          {
+            "id": "nvidia/nemotron-3-super-120b-a12b",
+            "name": "NVIDIA Nemotron 3 Super 120B",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 8192,
+            "compat": {
+              "requiresStringContent": true
+            }
+          },
+          {
+            "id": "moonshotai/kimi-k2.5",
+            "name": "Kimi K2.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 8192,
+            "compat": {
+              "requiresStringContent": true
+            }
+          },
+          {
+            "id": "minimaxai/minimax-m2.7",
+            "name": "Minimax M2.7",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 196608,
+            "maxTokens": 8192,
+            "compat": {
+              "requiresStringContent": true
+            }
+          },
+          {
+            "id": "z-ai/glm-5.1",
+            "name": "GLM 5.1",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202752,
+            "maxTokens": 8192,
+            "compat": {
+              "requiresStringContent": true
+            }
+          },
+          {
+            "id": "minimaxai/minimax-m2.5",
+            "name": "MiniMax M2.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 196608,
+            "maxTokens": 8192,
+            "compat": {
+              "requiresStringContent": true
+            }
+          },
+          {
+            "id": "z-ai/glm5",
+            "name": "GLM-5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202752,
+            "maxTokens": 8192,
+            "compat": {
+              "requiresStringContent": true
+            }
+          }
+        ]
+      },
+      "freeride": {
+        "baseUrl": "http://localhost:11343/v1",
+        "apiKey": "any",
+        "auth": "api-key",
+        "models": [
+          {
+            "id": "openrouter/free",
+            "name": "FreeRide free-tier router (OpenRouter smart-router)",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 4096
+          }
+        ]
+      },
+      "9router": {
+        "baseUrl": "http://127.0.0.1:20128/v1",
+        "apiKey": "sk-94d9c...bd5d",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "mmf/mimo-auto",
+            "name": "mimo-auto"
+          }
+        ]
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "nvidia:default": {
+        "provider": "nvidia",
+        "mode": "api_key"
+      },
+      "freeride:default": {
+        "provider": "freeride",
+        "mode": "api_key"
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      },
+      "botToken": "88159542...ieCM",
+      "dmPolicy": "open",
+      "allowFrom": [
+        "*"
+      ]
+    },
+    "whatsapp": {
+      "enabled": true,
+      "selfChatMode": false,
+      "dmPolicy": "open",
+      "allowFrom": [
+        "*"
+      ]
+    },
+    "matrix": {
+      "enabled": true,
+      "homeserver": "https://matrix-client.matrix.org",
+      "accessToken": "mat_7CH4...LJS2",
+      "deviceName": "OpenClaw Gateway",
+      "encryption": false,
+      "groupPolicy": "open",
+      "autoJoin": "off",
+      "dm": {
+        "policy": "open",
+        "allowFrom": [
+          "*"
+        ]
+      }
+    },
+    "discord": {
+      "enabled": true,
+      "token": "MTQ0MTc5...C0Ws",
+      "groupPolicy": "open",
+      "dmPolicy": "open",
+      "allowFrom": [
+        "*"
+      ],
+      "dm": {
+        "enabled": true
+      }
+    },
+    "slack": {
+      "enabled": true,
+      "botToken": "xoxb-822...QMlh",
+      "appToken": "37mKPrel...qMqR",
+      "groupPolicy": "open",
+      "capabilities": {
+        "interactiveReplies": true
+      },
+      "dmPolicy": "open",
+      "allowFrom": [
+        "*"
+      ],
+      "dm": {
+        "enabled": true
+      }
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    },
+    "entries": {
+      "goplaces": {
+        "apiKey": "AIzaSyCu...DsGg",
+        "enabled": false
+      },
+      "sag": {
+        "apiKey": "sk_4c0ad...e3e2"
+      },
+      "apple-notes": {
+        "enabled": false
+      },
+      "apple-reminders": {
+        "enabled": false
+      },
+      "bear-notes": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "imsg": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "peekaboo": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      }
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-06-19T23:51:48.432Z",
+    "lastRunVersion": "2026.6.8",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.6.8",
+    "lastTouchedAt": "2026-06-20T02:58:23.487Z"
+  },
+  "mcp": {
+    "servers": {
+      "mcphub": {
+        "transport": "streamable-http",
+        "url": "http://localhost:3001/mcp"
+      }
+    }
+  }
+}
