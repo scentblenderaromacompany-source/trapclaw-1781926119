@@ -1,0 +1,44 @@
+# Secrets - NEVER commit
+.env
+*.env
+.env.*
+**/system-access.md
+secrets/
+credentials/
+tokens/
+*.key
+*.pem
+
+# OpenClaw runtime
+.openclaw/
+
+# Node modules
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+
+# Compiled
+dist/
+build/
+
+# Backup/temp
+*.bak
+*.tmp
+*.swp
+*~
+
+# MCPHub runtime
+mcphub/node_modules/
+mcphub/dist/
+mcphub/*.log
